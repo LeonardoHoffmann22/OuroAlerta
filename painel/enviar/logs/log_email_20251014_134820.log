@@ -1,0 +1,35 @@
+Debug level 2: SERVER -> CLIENT: 220 smtp-sp217-26.kinghost.net ESMTP
+
+Debug level 1: CLIENT -> SERVER: EHLO localhost
+
+Debug level 2: SERVER -> CLIENT: 250-smtp-sp217-26.kinghost.net
+250-PIPELINING
+250-SIZE 62914560
+250-VRFY
+250-ETRN
+250-STARTTLS
+250-AUTH PLAIN LOGIN
+250-AUTH=PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+Debug level 1: CLIENT -> SERVER: AUTH LOGIN
+
+Debug level 2: SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+Debug level 1: CLIENT -> SERVER: [credentials hidden]
+Debug level 2: SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+Debug level 1: CLIENT -> SERVER: [credentials hidden]
+Debug level 2: SERVER -> CLIENT: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+Debug level 1: SMTP ERROR: Password command failed: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+Debug level 2: SMTP Error: Could not authenticate.
+Debug level 1: CLIENT -> SERVER: QUIT
+
+Debug level 2: SERVER -> CLIENT: 221 2.0.0 Bye
+
+Debug level 2: SMTP Error: Could not authenticate.

@@ -1,0 +1,65 @@
+@import url("style-base.css");
+
+/* Cabeçalho do painel */
+.topbar {
+  background: var(--verde-fundo);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--dourado);
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.topbar h1 {
+  font-size: 1.4rem;
+  color: var(--dourado-claro);
+}
+
+.btn-logout {
+  background: var(--dourado);
+  color: var(--branco);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.btn-logout:hover {
+  background: var(--dourado-claro);
+}
+
+/* Container do painel */
+.painel-container {
+  margin-top: 80px; /* espaço pro topo fixo */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.btn-action {
+  background: var(--branco);
+  color: var(--verde-escuro);
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 260px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: 0.3s;
+}
+
+.btn-action:hover {
+  background: var(--dourado-claro);
+  color: var(--branco);
+  transform: translateY(-3px);
+}

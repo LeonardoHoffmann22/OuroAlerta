@@ -1,0 +1,221 @@
+Debug level 2: SERVER -> CLIENT: 220 smtp-sp217-142.kinghost.net ESMTP
+
+Debug level 1: CLIENT -> SERVER: EHLO localhost
+
+Debug level 2: SERVER -> CLIENT: 250-smtp-sp217-142.kinghost.net
+250-PIPELINING
+250-SIZE 62914560
+250-VRFY
+250-ETRN
+250-STARTTLS
+250-AUTH PLAIN LOGIN
+250-AUTH=PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+Debug level 1: CLIENT -> SERVER: AUTH LOGIN
+
+Debug level 2: SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+Debug level 1: CLIENT -> SERVER: [credentials hidden]
+Debug level 2: SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+Debug level 1: CLIENT -> SERVER: [credentials hidden]
+Debug level 2: SERVER -> CLIENT: 235 2.7.0 Authentication successful
+
+Debug level 1: CLIENT -> SERVER: MAIL FROM:<ourodosul@ourodosul.com.br>
+
+Debug level 2: SERVER -> CLIENT: 250 2.1.0 Ok
+
+Debug level 1: CLIENT -> SERVER: RCPT TO:<alfafasvogel@hotmail.com>
+
+Debug level 2: SERVER -> CLIENT: 250 2.1.5 Ok
+
+Debug level 1: CLIENT -> SERVER: DATA
+
+Debug level 2: SERVER -> CLIENT: 354 End data with <CR><LF>.<CR><LF>
+
+Debug level 1: CLIENT -> SERVER: Date: Tue, 14 Oct 2025 13:51:08 +0200
+
+Debug level 1: CLIENT -> SERVER: To: alfafasvogel@hotmail.com
+
+Debug level 1: CLIENT -> SERVER: From: ourodosul@ourodosul.com.br
+
+Debug level 1: CLIENT -> SERVER: Subject: =?UTF-8?Q?Distribui=C3=A7=C3=A3o_de_Sobras?=
+
+Debug level 1: CLIENT -> SERVER: Message-ID: <EPeCZE9Vy6ixRZHyT0XYZGfELQPuNIbpRIPYlSIUSbk@localhost>
+
+Debug level 1: CLIENT -> SERVER: X-Mailer: PHPMailer 6.10.0 (https://github.com/PHPMailer/PHPMailer)
+
+Debug level 1: CLIENT -> SERVER: MIME-Version: 1.0
+
+Debug level 1: CLIENT -> SERVER: Content-Type: multipart/alternative;
+
+Debug level 1: CLIENT -> SERVER:  boundary="b1=_EPeCZE9Vy6ixRZHyT0XYZGfELQPuNIbpRIPYlSIUSbk"
+
+Debug level 1: CLIENT -> SERVER: 
+
+Debug level 1: CLIENT -> SERVER: --b1=_EPeCZE9Vy6ixRZHyT0XYZGfELQPuNIbpRIPYlSIUSbk
+
+Debug level 1: CLIENT -> SERVER: Content-Type: text/plain; charset=UTF-8
+
+Debug level 1: CLIENT -> SERVER: Content-Transfer-Encoding: base64
+
+Debug level 1: CLIENT -> SERVER: 
+
+Debug level 1: CLIENT -> SERVER: UHJlemFkbyBBc3NvY2lhZG86IEpPQU8gVk9HRUwgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+
+Debug level 1: CLIENT -> SERVER: ICAgICAgMjQ2My41IA0KIA0KDQogICAgICAgICBBIENvb3BlcmF0aXZhICJPdXJvIGRvIFN1bCIg
+
+Debug level 1: CLIENT -> SERVER: dGVtIGEgc2F0aXNmYcOnw6NvIGRlIGNvbXVuaWNhciBxdWUsIA0KY29uZm9ybWUgZGVjaXPDo28g
+
+Debug level 1: CLIENT -> SERVER: IGRhICAgQXNzZW1ibGVpYSAgR2VyYWwgIE9yZGluw6FyaWEgICByZWFsaXphZGEgZW0gIA0KMDgv
+
+Debug level 1: CLIENT -> SERVER: MDMvMjAyNSwgZmFyYSBhIGRpc3RyaWJ1acOnw6NvIGRlIHNvYnJhcyByZWxhdGl2YXMgYW8gZXhl
+
+Debug level 1: CLIENT -> SERVER: cmPDrWNpbyANCmRlIDIwMjQgIG5hIHByb3BvcsOnw6NvIGRhcyBvcGVyYcOnw7VlcyByZWFsaXph
+
+Debug level 1: CLIENT -> SERVER: ZGFzIHBlbG9zIGFzc29jaWFkb3Mgbm8gYW5vLCBjb25mb3JtZSB0YWJlbGEgYWJhaXhvOg0KIA0K
+
+Debug level 1: CLIENT -> SERVER: UiQgOCwwMCBwb3IgY2FiZcOnYSBkZSBzdcOtbm8gZW50cmVndWUNCg0KUiQgMSwwMCBwb3IgY2Fi
+
+Debug level 1: CLIENT -> SERVER: ZcOnYSBkZSBsZWl0w6NvIGVudHJlZ3VlDQoNClIkIDI0LDAwIHBvciBjYWJlw6dhIGRlIGJvdmlu
+
+Debug level 1: CLIENT -> SERVER: byBlbnRyZWd1ZQ0KDQoyLDAlIHNvYnJlIGFzIGNvbXByYXMgcmVhbGl6YWRhcyBuYSBjb29wZXJh
+
+Debug level 1: CLIENT -> SERVER: dGl2YS4NCiANCg0KICAgICAgICAgRmljb3UgZGVjaWRpZG8gYWluZGEgcXVlIDMwJSBkbyB2YWxv
+
+Debug level 1: CLIENT -> SERVER: ciBkaXN0cmlidcOtZG8gc2Vyw6EgbGFuw6dhZG8NCm5hIGNvbnRhIGNhcGl0YWwgZG9zIGFzc29j
+
+Debug level 1: CLIENT -> SERVER: aWFkb3MgZSA3MCUgc2Vyw6EgY3JlZGl0YWRvIGVtIGNvbnRhIGNvcnJlbnRlLCANCmZpY2FuZG8g
+
+Debug level 1: CLIENT -> SERVER: ZGlzcG9uw612ZWwgcGFyYSBjb2JyYW7Dp2EgYSBwYXJ0aXIgZG8gZGlhIDEyLzA1LzIwMjUuDQog
+
+Debug level 1: CLIENT -> SERVER: DQoNCiAgICAgICAgIFF1ZXJlbW9zICBzYWxpZW50YXIgIHF1ZSAgcGFyYSAgYWxjYW7Dp2FyICBv
+
+Debug level 1: CLIENT -> SERVER: cyBvYmpldGl2b3MgZSBvYnRlcg0KYm9ucyByZXN1bHRhZG9zLCBlIG5lY2Vzc8OhcmlhIGEgdW5p
+
+Debug level 1: CLIENT -> SERVER: w6NvIGRlIGVzZm9yw6dvcywgY29tIGEgcGFydGljaXBhw6fDo28gZGUNCnRvZG9zLiAgUG9yIGlz
+
+Debug level 1: CLIENT -> SERVER: c28sIGNhcm8gIGFzc29jaWFkbywgc3VhIHBhcnRpY2lwYcOnw6NvICBmb2kgZSBzZW1wcmUgIHNl
+
+Debug level 1: CLIENT -> SERVER: csOhIA0KaW1wb3J0YW50ZS4NCiANCg0KICAgICAgICAgRGVzdGEgZm9ybWEsIGluZm9ybWFtb3Mg
+
+Debug level 1: CLIENT -> SERVER: cXVlIHN1YSBwYXJjZWxhIGRhIGRpc3RyaWJ1acOnw6NvIGRlIA0Kc29icmFzIGUgIGRlIFIkIDEw
+
+Debug level 1: CLIENT -> SERVER: OCw1NyAsIHNlbmRvIGNyZWRpdGFkbyBlbSBzdWEgY29udGEgZGUgY2FwaXRhbA0KdmFsb3IgZGUg
+
+Debug level 1: CLIENT -> SERVER: UiQgMzIsNTkoMzAlKSwgZmljYW5kbyBkaXNwb27DrXZlbCBwYXJhIHJldGlyYWRhIGEgcGFydGly
+
+Debug level 1: CLIENT -> SERVER: DQpkZSAxMi8wNS8yMDI1ICBvICB2YWxvciAgZGUgIFIkIDc2LDA1ICg3MCUpLg0KIA0KDQogICAg
+
+Debug level 1: CLIENT -> SERVER: ICAgICBBZ3JhZGVjZW1vcyBhICBzdWEgIHBhcnRpY2lwYcOnw6NvICBlICBjb252b2NhbW9zICBh
+
+Debug level 1: CLIENT -> SERVER: ICB0b2RvcyAgcGFyYQ0KanVudG9zIGNvbnRpbnVhcm1vcyBmYXplbmRvIGEgZm9yY2EgZG8gY29v
+
+Debug level 1: CLIENT -> SERVER: cGVyYXRpdmlzbW8uDQoNClNFIFZPQ8OKIErDgSBSRUNFQkVVIFNFVVMgVkFMT1JFUywgRkFWT1Ig
+
+Debug level 1: CLIENT -> SERVER: REVTQ09OU0lERVJBUiBFU1NFIEVNQUlMLg0KIA0KDQogICAgICAgICAgICAgICAgICBEaXJlw6fD
+
+Debug level 1: CLIENT -> SERVER: o28gT3VybyBkbyBTdWwNCg==
+
+Debug level 1: CLIENT -> SERVER: 
+
+Debug level 1: CLIENT -> SERVER: --b1=_EPeCZE9Vy6ixRZHyT0XYZGfELQPuNIbpRIPYlSIUSbk
+
+Debug level 1: CLIENT -> SERVER: Content-Type: text/html; charset=UTF-8
+
+Debug level 1: CLIENT -> SERVER: Content-Transfer-Encoding: base64
+
+Debug level 1: CLIENT -> SERVER: 
+
+Debug level 1: CLIENT -> SERVER: UHJlemFkbyBBc3NvY2lhZG86IEpPQU8gVk9HRUwgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+
+Debug level 1: CLIENT -> SERVER: ICAgICAgMjQ2My41IDxiciAvPg0KIDxiciAvPg0KPGJyIC8+DQogICAgICAgICBBIENvb3BlcmF0
+
+Debug level 1: CLIENT -> SERVER: aXZhICZxdW90O091cm8gZG8gU3VsJnF1b3Q7IHRlbSBhIHNhdGlzZmEmY2NlZGlsOyZhdGlsZGU7
+
+Debug level 1: CLIENT -> SERVER: byBkZSBjb211bmljYXIgcXVlLCA8YnIgLz4NCmNvbmZvcm1lIGRlY2lzJmF0aWxkZTtvICBkYSAg
+
+Debug level 1: CLIENT -> SERVER: IEFzc2VtYmxlaWEgIEdlcmFsICBPcmRpbiZhYWN1dGU7cmlhICAgcmVhbGl6YWRhIGVtICA8YnIg
+
+Debug level 1: CLIENT -> SERVER: Lz4NCjA4LzAzLzIwMjUsIGZhcmEgYSBkaXN0cmlidWkmY2NlZGlsOyZhdGlsZGU7byBkZSBzb2Jy
+
+Debug level 1: CLIENT -> SERVER: YXMgcmVsYXRpdmFzIGFvIGV4ZXJjJmlhY3V0ZTtjaW8gPGJyIC8+DQpkZSAyMDI0ICBuYSBwcm9w
+
+Debug level 1: CLIENT -> SERVER: b3ImY2NlZGlsOyZhdGlsZGU7byBkYXMgb3BlcmEmY2NlZGlsOyZvdGlsZGU7ZXMgcmVhbGl6YWRh
+
+Debug level 1: CLIENT -> SERVER: cyBwZWxvcyBhc3NvY2lhZG9zIG5vIGFubywgY29uZm9ybWUgdGFiZWxhIGFiYWl4bzo8YnIgLz4N
+
+Debug level 1: CLIENT -> SERVER: CiA8YnIgLz4NClIkIDgsMDAgcG9yIGNhYmUmY2NlZGlsO2EgZGUgc3UmaWFjdXRlO25vIGVudHJl
+
+Debug level 1: CLIENT -> SERVER: Z3VlPGJyIC8+DQo8YnIgLz4NClIkIDEsMDAgcG9yIGNhYmUmY2NlZGlsO2EgZGUgbGVpdCZhdGls
+
+Debug level 1: CLIENT -> SERVER: ZGU7byBlbnRyZWd1ZTxiciAvPg0KPGJyIC8+DQpSJCAyNCwwMCBwb3IgY2FiZSZjY2VkaWw7YSBk
+
+Debug level 1: CLIENT -> SERVER: ZSBib3Zpbm8gZW50cmVndWU8YnIgLz4NCjxiciAvPg0KMiwwJSBzb2JyZSBhcyBjb21wcmFzIHJl
+
+Debug level 1: CLIENT -> SERVER: YWxpemFkYXMgbmEgY29vcGVyYXRpdmEuPGJyIC8+DQogPGJyIC8+DQo8YnIgLz4NCiAgICAgICAg
+
+Debug level 1: CLIENT -> SERVER: IEZpY291IGRlY2lkaWRvIGFpbmRhIHF1ZSAzMCUgZG8gdmFsb3IgZGlzdHJpYnUmaWFjdXRlO2Rv
+
+Debug level 1: CLIENT -> SERVER: IHNlciZhYWN1dGU7IGxhbiZjY2VkaWw7YWRvPGJyIC8+DQpuYSBjb250YSBjYXBpdGFsIGRvcyBh
+
+Debug level 1: CLIENT -> SERVER: c3NvY2lhZG9zIGUgNzAlIHNlciZhYWN1dGU7IGNyZWRpdGFkbyBlbSBjb250YSBjb3JyZW50ZSwg
+
+Debug level 1: CLIENT -> SERVER: PGJyIC8+DQpmaWNhbmRvIGRpc3BvbiZpYWN1dGU7dmVsIHBhcmEgY29icmFuJmNjZWRpbDthIGEg
+
+Debug level 1: CLIENT -> SERVER: cGFydGlyIGRvIGRpYSAxMi8wNS8yMDI1LjxiciAvPg0KIDxiciAvPg0KPGJyIC8+DQogICAgICAg
+
+Debug level 1: CLIENT -> SERVER: ICBRdWVyZW1vcyAgc2FsaWVudGFyICBxdWUgIHBhcmEgIGFsY2FuJmNjZWRpbDthciAgb3Mgb2Jq
+
+Debug level 1: CLIENT -> SERVER: ZXRpdm9zIGUgb2J0ZXI8YnIgLz4NCmJvbnMgcmVzdWx0YWRvcywgZSBuZWNlc3MmYWFjdXRlO3Jp
+
+Debug level 1: CLIENT -> SERVER: YSBhIHVuaSZhdGlsZGU7byBkZSBlc2ZvciZjY2VkaWw7b3MsIGNvbSBhIHBhcnRpY2lwYSZjY2Vk
+
+Debug level 1: CLIENT -> SERVER: aWw7JmF0aWxkZTtvIGRlPGJyIC8+DQp0b2Rvcy4gIFBvciBpc3NvLCBjYXJvICBhc3NvY2lhZG8s
+
+Debug level 1: CLIENT -> SERVER: IHN1YSBwYXJ0aWNpcGEmY2NlZGlsOyZhdGlsZGU7byAgZm9pIGUgc2VtcHJlICBzZXImYWFjdXRl
+
+Debug level 1: CLIENT -> SERVER: OyA8YnIgLz4NCmltcG9ydGFudGUuPGJyIC8+DQogPGJyIC8+DQo8YnIgLz4NCiAgICAgICAgIERl
+
+Debug level 1: CLIENT -> SERVER: c3RhIGZvcm1hLCBpbmZvcm1hbW9zIHF1ZSBzdWEgcGFyY2VsYSBkYSBkaXN0cmlidWkmY2NlZGls
+
+Debug level 1: CLIENT -> SERVER: OyZhdGlsZGU7byBkZSA8YnIgLz4NCnNvYnJhcyBlICBkZSBSJCAxMDgsNTcgLCBzZW5kbyBjcmVk
+
+Debug level 1: CLIENT -> SERVER: aXRhZG8gZW0gc3VhIGNvbnRhIGRlIGNhcGl0YWw8YnIgLz4NCnZhbG9yIGRlIFIkIDMyLDU5KDMw
+
+Debug level 1: CLIENT -> SERVER: JSksIGZpY2FuZG8gZGlzcG9uJmlhY3V0ZTt2ZWwgcGFyYSByZXRpcmFkYSBhIHBhcnRpcjxiciAv
+
+Debug level 1: CLIENT -> SERVER: Pg0KZGUgMTIvMDUvMjAyNSAgbyAgdmFsb3IgIGRlICBSJCA3NiwwNSAoNzAlKS48YnIgLz4NCiA8
+
+Debug level 1: CLIENT -> SERVER: YnIgLz4NCjxiciAvPg0KICAgICAgICAgQWdyYWRlY2Vtb3MgYSAgc3VhICBwYXJ0aWNpcGEmY2Nl
+
+Debug level 1: CLIENT -> SERVER: ZGlsOyZhdGlsZGU7byAgZSAgY29udm9jYW1vcyAgYSAgdG9kb3MgIHBhcmE8YnIgLz4NCmp1bnRv
+
+Debug level 1: CLIENT -> SERVER: cyBjb250aW51YXJtb3MgZmF6ZW5kbyBhIGZvcmNhIGRvIGNvb3BlcmF0aXZpc21vLjxiciAvPg0K
+
+Debug level 1: CLIENT -> SERVER: PGJyIC8+DQpTRSBWT0MmRWNpcmM7IEomQWFjdXRlOyBSRUNFQkVVIFNFVVMgVkFMT1JFUywgRkFW
+
+Debug level 1: CLIENT -> SERVER: T1IgREVTQ09OU0lERVJBUiBFU1NFIEVNQUlMLjxiciAvPg0KIDxiciAvPg0KPGJyIC8+DQogICAg
+
+Debug level 1: CLIENT -> SERVER: ICAgICAgICAgICAgICBEaXJlJmNjZWRpbDsmYXRpbGRlO28gT3VybyBkbyBTdWw8YnIgLz4NCg==
+
+Debug level 1: CLIENT -> SERVER: 
+
+Debug level 1: CLIENT -> SERVER: 
+
+Debug level 1: CLIENT -> SERVER: --b1=_EPeCZE9Vy6ixRZHyT0XYZGfELQPuNIbpRIPYlSIUSbk--
+
+Debug level 1: CLIENT -> SERVER: 
+
+Debug level 1: CLIENT -> SERVER: .
+
+Debug level 2: SERVER -> CLIENT: 250 2.0.0 Ok: queued as EBC633001C41
+
+Debug level 1: CLIENT -> SERVER: QUIT
+
+Debug level 2: SERVER -> CLIENT: 221 2.0.0 Bye
+

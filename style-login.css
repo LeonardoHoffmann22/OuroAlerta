@@ -1,0 +1,64 @@
+@import url("style-base.css");
+
+.login-card {
+  background: var(--branco);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  animation: fadeIn 0.8s ease;
+}
+
+.logo-container {
+  margin-bottom: 1rem;
+}
+
+.logo-container img {
+  max-width: 180px;
+  height: auto;
+}
+
+.login-card h1 {
+  color: var(--dourado);
+  margin-bottom: 1.2rem;
+  font-size: 1.6rem;
+}
+
+.erro {
+  color: red;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.input-group input:focus {
+  border-color: var(--dourado);
+  box-shadow: 0 0 5px rgba(184,134,11,0.5);
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(-20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
