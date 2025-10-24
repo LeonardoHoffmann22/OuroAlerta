@@ -1,10 +1,9 @@
 <?php
-require __DIR__ . '/../../vendor/autoload.php';
+require __DIR__ . '/../../vendor/autoload.php'; // Carrega PHPMailer + FPDF via Composer
 session_start();
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-use FPDF\FPDF; // FPDF via Composer
 
 // Função de filtragem de email
 function filtrar($a) {
@@ -12,7 +11,7 @@ function filtrar($a) {
     return filter_var($a, FILTER_VALIDATE_EMAIL);
 }
 
-// Função para gerar PDF a partir de um arquivo de texto
+// Função para gerar PDF obrigatório a partir de arquivo de texto
 function gerarPDFObrigatorio($arquivoTmp, $nomeOriginal) {
     $pdfDestino = sys_get_temp_dir() . '/' . pathinfo($nomeOriginal, PATHINFO_FILENAME) . '_' . uniqid() . '.pdf';
     try {
@@ -21,7 +20,8 @@ function gerarPDFObrigatorio($arquivoTmp, $nomeOriginal) {
             return false;
         }
 
-        $pdf = new FPDF();
+        // Criação do PDF usando FPDF via Composer
+        $pdf = new \FPDF(); // Observe a barra invertida
         $pdf->AddPage();
         $pdf->SetFont('Arial', '', 12);
         $pdf->MultiCell(0, 8, utf8_decode($conteudo));
@@ -33,7 +33,7 @@ function gerarPDFObrigatorio($arquivoTmp, $nomeOriginal) {
     }
 }
 
-// Processa o formulário
+// Processamento do formulário
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $envio = $_POST['envio'];
     $senha = $_POST['senha'];
@@ -53,8 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->Encoding = 'base64';
 
         try {
-            // Configurações do servidor SMTP
-            $mail->IsSMTP();
+            // Configuração SMTP
+            $mail->isSMTP();
             $mail->Host = "smtp.ourodosul.com.br";
             $mail->Port = 587;
             $mail->SMTPAuth = true;
