@@ -19,7 +19,7 @@ function gerarPDFObrigatorio($arquivoTmp, $nomeOriginal) {
         if ($conteudo === false) {
             return false;
         }
-//teste git
+        
         // Criação do PDF usando FPDF via Composer
         $pdf = new \FPDF(); // Observe a barra invertida
         $pdf->AddPage();
