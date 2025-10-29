@@ -1,6 +1,9 @@
 <?php
-require __DIR__ . '/../../vendor/autoload.php'; // Carrega PHPMailer + FPDF via Composer
+require __DIR__ . '/../../vendor/autoload.php';
 session_start();
+
+// Reset da mensagem de envio antes de processar
+unset($_SESSION['enviado']);
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -11,29 +14,38 @@ function filtrar($a) {
     return filter_var($a, FILTER_VALIDATE_EMAIL);
 }
 
-// Função para gerar PDF obrigatório a partir de arquivo de texto
-function gerarPDFObrigatorio($arquivoTmp, $nomeOriginal) {
-    $pdfDestino = sys_get_temp_dir() . '/' . pathinfo($nomeOriginal, PATHINFO_FILENAME) . '_' . uniqid() . '.pdf';
-    try {
-        $conteudo = file_get_contents($arquivoTmp);
-        if ($conteudo === false) {
-            return false;
-        }
-        
-        // Criação do PDF usando FPDF via Composer
-        $pdf = new \FPDF(); // Observe a barra invertida
-        $pdf->AddPage();
-        $pdf->SetFont('Arial', '', 12);
-        $pdf->MultiCell(0, 8, utf8_decode($conteudo));
-        $pdf->Output('F', $pdfDestino);
+function converterParaPDF($arquivoTmp, $nomeOriginal) {
+    $ext = strtolower(pathinfo($nomeOriginal, PATHINFO_EXTENSION));
+    $saidaPDF = sys_get_temp_dir() . '/' . pathinfo($nomeOriginal, PATHINFO_FILENAME) . '_' . uniqid() . '.pdf';
 
-        return $pdfDestino;
-    } catch (Exception $e) {
+    if ($ext === 'pdf') { // Já é PDF
+        return $arquivoTmp;
+    }
+
+    $caminho = '"C:\Program Files\LibreOffice\program\soffice.exe"'; // Caminho completo LibreOffice
+
+    if (!file_exists($arquivoTmp)) {
         return false;
     }
+
+    $converte = $caminho . ' --headless --nologo --convert-to pdf --outdir ' 
+             . escapeshellarg(sys_get_temp_dir()) . ' ' 
+             . escapeshellarg($arquivoTmp);
+
+    exec($converte . ' 2>&1', $captura, $retorno);
+
+    if ($retorno === 0) {
+        $arquivos = glob(sys_get_temp_dir() . '/*.pdf');
+        return $arquivos 
+            ? array_reduce($arquivos, fn($maisRecente, $atual) => 
+                filemtime($atual) > filemtime($maisRecente) ? $atual : $maisRecente
+            ) 
+            : false;
+    }
+
+    return false;
 }
 
-// Processamento do formulário
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $envio = $_POST['envio'];
     $senha = $_POST['senha'];
@@ -74,8 +86,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $mail->addAddress($des);
 
             // Corpo do email
-            $mail->Subject = $asst;
-            $mail->isHTML(true);
             if (!empty(trim($texto))) {
                 $mail->Body = nl2br(htmlentities($texto));
                 $mail->AltBody = $texto;
@@ -84,13 +94,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $mail->AltBody = "(Sem conteúdo)";
             }
 
-            // Anexo — converte para PDF obrigatoriamente
+            // Anexo — conversão obrigatória para PDF
             if (isset($_FILES['arquivo']) && $_FILES['arquivo']['error'] === UPLOAD_ERR_OK) {
-                $pdfConvertido = gerarPDFObrigatorio($_FILES['arquivo']['tmp_name'], $_FILES['arquivo']['name']);
-                if (!$pdfConvertido) {
-                    $_SESSION['enviado'] = "Erro ao converter o arquivo para PDF. O envio foi cancelado.";
+                $pdfConvertido = converterParaPDF($_FILES['arquivo']['tmp_name'], $_FILES['arquivo']['name']);
+                if (!$pdfConvertido || !file_exists($pdfConvertido)) {
+                    $_SESSION['enviado'] = "Erro ao converter o arquivo em PDF. O envio foi cancelado.";
                     header("location: index.php");
-                    exit; // encerra o script
+                    exit;
                 }
                 $mail->addAttachment($pdfConvertido, basename($pdfConvertido));
             }
