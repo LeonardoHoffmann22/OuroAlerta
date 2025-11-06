@@ -2,11 +2,11 @@
 require __DIR__ . '/../../vendor/autoload.php';
 session_start();
 
-//Reset da mensagem de envio
 unset($_SESSION['enviado']);
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use mysqli;
 
 // Função de filtragem de email
 function filtrar($a) {
@@ -14,76 +14,8 @@ function filtrar($a) {
     return filter_var($a, FILTER_VALIDATE_EMAIL);
 }
 
-// Função para converter qualquer arquivo em PDF com tratamento de tipos não suportados
-function converterParaPDF($arquivoTmp, $nomeOriginal) {
-    $ext = strtolower(pathinfo($nomeOriginal, PATHINFO_EXTENSION));
-    $saidaDir = sys_get_temp_dir();
-    $saidaPDF = $saidaDir . '/anexo_ourodosul.pdf';
-    $logConversao = __DIR__ . '/logs/conversao_' . date('Ymd_His') . '.log';
-
-    // Lista de extensões suportadas pelo LibreOffice
-    $formatosSuportados = [
-        'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx',
-        'odt', 'ods', 'odp', 'txt', 'csv', 'rtf', 'pdf'
-    ];
-
-    // Garante que o arquivo existe
-    if (!file_exists($arquivoTmp)) {
-        file_put_contents($logConversao, "ERRO: Arquivo temporário não encontrado.\n");
-        return false;
-    }
-
-    // Verifica se o formato é suportado
-    if (!in_array($ext, $formatosSuportados)) {
-        file_put_contents($logConversao, "ERRO: Formato .$ext não suportado para conversão em PDF.\n");
-        return false;
-    }
-
-    // Se já for PDF, apenas copia
-    if ($ext === 'pdf') {
-        if (copy($arquivoTmp, $saidaPDF)) {
-            file_put_contents($logConversao, "Arquivo já era PDF, copiado para: $saidaPDF\n");
-            return $saidaPDF;
-        } else {
-            file_put_contents($logConversao, "ERRO ao copiar PDF original.\n");
-            return false;
-        }
-    }
-
-    // Caminho do LibreOffice
-    $caminho = '"C:\Program Files\LibreOffice\program\soffice.exe"';
-
-    // Comando de conversão
-    $comando = $caminho . ' --headless --nologo --convert-to pdf --outdir '
-              . escapeshellarg($saidaDir) . ' ' . escapeshellarg($arquivoTmp);
-
-    // Executa e captura resultado
-    exec($comando . ' 2>&1', $saidaExec, $retorno);
-
-    $log = "Comando executado:\n$comando\n\nSaída:\n" . implode("\n", $saidaExec) . "\nCódigo de retorno: $retorno\n";
-    file_put_contents($logConversao, $log);
-
-    // Sucesso
-    if ($retorno === 0) {
-        $arquivosPDF = glob($saidaDir . '/*.pdf');
-        $maisRecente = $arquivosPDF
-            ? array_reduce($arquivosPDF, fn($a, $b) => filemtime($b) > filemtime($a) ? $b : $a)
-            : null;
-
-        if ($maisRecente && file_exists($maisRecente)) {
-            copy($maisRecente, $saidaPDF);
-            file_put_contents($logConversao, "\nConversão concluída. Anexo gerado: $saidaPDF\n", FILE_APPEND);
-            return $saidaPDF;
-        }
-
-        file_put_contents($logConversao, "\nERRO: Nenhum PDF gerado.\n", FILE_APPEND);
-        return false;
-    }
-
-    // Falha
-    file_put_contents($logConversao, "\nERRO: Conversão falhou (código $retorno)\n", FILE_APPEND);
-    return false;
-}
+// Conexão com o banco
+require_once __DIR__ . '/../../ANEXOS.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $envio = $_POST['envio'];
@@ -124,9 +56,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $mail->setFrom($envio, "Contato Ouro do Sul");
             $mail->addAddress($des);
 
-            //assunto
+            //Assunto
             $mail->Subject = $asst;
-            //Texto
+
+            //Texto base do corpo
             if (!empty(trim($texto))) {
                 $mail->Body = nl2br(htmlentities($texto));
                 $mail->AltBody = $texto;
@@ -134,28 +67,53 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $mail->Body = "<p>(Sem conteúdo)</p>";
                 $mail->AltBody = "(Sem conteúdo)";
             }
-            
-            //Anexo e pdf
+
+            // Upload e geração do link de download
             if (isset($_FILES['arquivo']) && $_FILES['arquivo']['error'] === UPLOAD_ERR_OK) {
-                $pdfConvertido = converterParaPDF($_FILES['arquivo']['tmp_name'], $_FILES['arquivo']['name']);
-                if (!$pdfConvertido || !file_exists($pdfConvertido)) {
-                    $_SESSION['enviado'] = "Erro ao converter o arquivo em PDF. O envio foi cancelado.";
+                $uploadDir = __DIR__ . '/uploads/';
+                if (!file_exists($uploadDir)) {
+                    mkdir($uploadDir, 0777, true);
+                }
+
+                $arquivoTmp = $_FILES['arquivo']['tmp_name'];
+                $nomeO = $_FILES['arquivo']['name'];
+                $extensao = pathinfo($nomeO, PATHINFO_EXTENSION);
+
+                $nomeA = uniqid('anexo_', true) . '.' . $extensao;
+                $caminho = $uploadDir . $nomeA;
+
+                if (move_uploaded_file($arquivoTmp, $caminho)) {
+                    $link = bin2hex(random_bytes(16));
+
+                    //Grava no banco
+                    $sql = "INSERT INTO Anexos (link, arquivo, ativo) VALUES (?, ?, 1)";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param("ss", $link, $nomeA);
+                    $stmt->execute();
+
+                    //Gera o link
+                    $url = "http://$host/painel/enviar/baixar.php?link=" . $link;
+
+                    //Adiciona o link ao corpo do e-mail
+                    $mail->Body .= "<br><br><strong>Baixe o anexo aqui:</strong> <a href='$url'>$url</a>";
+                    $mail->AltBody .= "\n\nBaixe o anexo aqui: $url";
+                } else {
+                    $_SESSION['enviado'] = "Erro ao processar o anexo.";
                     header("location: index.php");
                     exit;
                 }
-                $mail->addAttachment($pdfConvertido, 'anexo_ourodosul.pdf', 'base64', 'application/pdf');
-
             }
 
-            //Envia
+            // Envia o e-mail
             $mail->send();
             $_SESSION['enviado'] = "Email enviado com sucesso!";
+
         } catch (Exception $e) {
             $_SESSION['enviado'] = "Falha no envio do Email! " . $mail->ErrorInfo;
         }
     }
 
-    //Salva log de debug
+    // Salva log de debug
     $nome_arquivo = 'log_email_' . date('Ymd_His') . '.log';
     file_put_contents(__DIR__ . '/logs/' . $nome_arquivo, $debugLog);
 
