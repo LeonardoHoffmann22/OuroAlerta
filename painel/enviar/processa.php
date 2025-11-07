@@ -6,7 +6,6 @@ unset($_SESSION['enviado']);
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-use mysqli;
 
 // Função de filtragem de email
 function filtrar($a) {

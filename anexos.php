@@ -1,5 +1,5 @@
 <?php
-$host = $_SERVER['HTTP_HOST']; 
+$host = "192.168.0.59";//Mudar para o ip da maquina que esta em, uso
 $user = 'root'; 
 $pass = '';
 $db   = 'OuroAlerta';
